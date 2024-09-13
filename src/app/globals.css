@@ -20,6 +20,11 @@
 /* font-family: Arial, Helvetica, sans-serif; */
 /* } */
 
-.apartment-image {
+.list-image {
   width: 200px;
+}
+.apartment-image {
+  width: 500px;
+  height: 300px;
+  object-fit: contain;
 }
