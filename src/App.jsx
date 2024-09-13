@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import apartments from "./apartments.json";
@@ -11,6 +11,13 @@ const App = () => {
   const [data, setData] = useState(apartments);
   const [searchTerm, setSearchTerm] = useState("");
   const [priceFilter, setPriceFilter] = useState("all");
+  const [isBrowser, setIsBrowser] = useState(false);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setIsBrowser(true);
+    }
+  }, []);
 
   function handleSearch(e) {
     setSearchTerm(e.target.value);
@@ -38,7 +45,7 @@ const App = () => {
     return searchMatch && priceMatch;
   });
 
-  return (
+  return isBrowser ? (
     <div>
       <BrowserRouter>
         <Routes>
@@ -62,7 +69,7 @@ const App = () => {
         </Routes>
       </BrowserRouter>
     </div>
-  );
+  ) : null;
 };
 
 export default App;
